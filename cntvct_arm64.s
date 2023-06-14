@@ -9,6 +9,7 @@
 // $0 is the stack size needed
 // 8 is the size of arguments+return values. Can be addressed using FP
 TEXT ·cpuTimer(SB),NOSPLIT,$0-8
+	ISB $1
 	MRS CNTVCT_EL0, R0
 
 	MOVD R0, ret+0(FP)
