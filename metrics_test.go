@@ -15,6 +15,7 @@ func osTimer() int64 {
 
 func TestOSTimer(t *testing.T) {
 	runtime.LockOSThread() // Important: do not let scheduler switch us out
+	defer runtime.UnlockOSThread()
 
 	osStart := osTimer()
 	var osEnd int64
@@ -31,6 +32,7 @@ func TestOSTimer(t *testing.T) {
 
 func TestCPUTimer(t *testing.T) {
 	runtime.LockOSThread() // Important: do not let scheduler switch us out
+	defer runtime.UnlockOSThread()
 
 	cpuStart := cpuTimer()
 	osStart := osTimer()
